@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=Quake
+Exec=quake
+Comment=Shareware version of Quake
+Type=Application
+Icon=${SNAP}/quake.png
+StartupNotify=true

@@ -1,0 +1,50 @@
+name:   quake
+version:        "0.1-shareware"
+summary:        Quake shareware installer
+description:    |
+        Quake is a classic First Person Shooter, originally released by id games. This will install the shareware version which will be launched by dosbox.
+confinement:    strict
+grade: stable
+
+apps:
+        quake:
+                command: launcher
+                plugs:  [unity7, pulseaudio, opengl, network]
+
+parts:
+        sdlgui:
+                plugin: autotools
+                source-type:    tar
+                source: https://www.libsdl.org/projects/GUIlib/src/GUIlib-1.2.1.tar.gz
+                configflags: [--prefix=/usr]
+                build-packages:
+                        - gcc
+                        - g++
+                        - make
+                        - libsdl1.2-dev
+        gui:
+                after: [sdlgui]
+                plugin: autotools
+                source: guisrc
+                configflags: [--prefix=/usr]
+                build-packages:
+                        - gcc
+                        - make
+                        - libsdl1.2-dev
+        launch:
+                plugin: dump
+                source: launcher
+                stage-packages:
+                        - wget
+                        - unzip
+                        - libpng12-0
+                        - libsdl1.2debian
+                        - libsdl-net1.2
+                        - libsdl-sound1.2
+                        - libgl1-mesa-glx
+                        - dosbox
+                prime:
+                        - -share
+                        - -usr/share/doc
+                        - -usr/share/lintian
+                        - -usr/share/man
