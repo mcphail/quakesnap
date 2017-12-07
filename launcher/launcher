@@ -71,17 +71,9 @@ then
   cd $SNAP_USER_DATA/$GAMEDIR
   guiluurve download
   wget https://archive.org/download/Quake_802/zQUAKE_SW-play.zip -t 5 --timeout 10 || guiluurve nodownload
-  unzip -d shareware zQUAKE_SW-play.zip || guiluurve nozip
+  unzip -LL -d shareware zQUAKE_SW-play.zip || guiluurve nozip
+  cp $SNAP/quakespasm.pak $SNAP_USER_DATA/$GAMEDIR/shareware/id1
 fi
 
 cd $SNAP_USER_DATA/$GAMEDIR
-cp $SNAP/dosbox_distrib.conf .
-
-if [ -f $SNAP_USER_DATA/$GAMEDIR/dosbox.conf ];
-then
-  echo "Using custom configuration"
-  dosbox -conf dosbox.conf
-else
-  echo "Using default configuration"
-  dosbox -conf dosbox_distrib.conf
-fi
+${SNAP}/quakespasm -f -basedir shareware

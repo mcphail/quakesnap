@@ -1,8 +1,8 @@
 name:   quake-shareware
-version:        "0.1"
+version:        "0.2"
 summary:        Quake shareware installer
 description:    |
-        Quake is a classic First Person Shooter, originally released by id games. This will install the shareware version which will be launched by dosbox.
+        Quake is a classic First Person Shooter, originally released by id games. This will install the shareware version which will be launched in the quakespam engine.
 confinement:    strict
 grade: stable
 
@@ -31,6 +31,27 @@ parts:
                         - gcc
                         - make
                         - libsdl1.2-dev
+        quakespasm:
+                plugin: make
+                source: svn://svn.code.sf.net/p/quakespasm/code/trunk/quakespasm
+                source-subdir: Quake
+                make-parameters:
+                        - USE_SDL2=1
+                artifacts:
+                        - quakespasm
+                        - quakespasm.pak
+                build-packages:
+                        - gcc
+                        - make
+                        - libsdl2-dev
+                        - libmad0-dev
+                        - libogg-dev
+                        - libvorbis-dev
+                stage-packages:
+                        - libsdl2-2.0-0
+                        - libmad0
+                        - libogg0
+                        - libvorbis0a
         launch:
                 plugin: dump
                 source: launcher
@@ -39,10 +60,7 @@ parts:
                         - unzip
                         - libpng12-0
                         - libsdl1.2debian
-                        - libsdl-net1.2
-                        - libsdl-sound1.2
                         - libgl1-mesa-glx
-                        - dosbox
                 prime:
                         - -share
                         - -usr/share/doc
