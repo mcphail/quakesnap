@@ -1,5 +1,5 @@
-name:   quake
-version:        "0.1-shareware"
+name:   quake-shareware
+version:        "0.1"
 summary:        Quake shareware installer
 description:    |
         Quake is a classic First Person Shooter, originally released by id games. This will install the shareware version which will be launched by dosbox.
@@ -7,7 +7,7 @@ confinement:    strict
 grade: stable
 
 apps:
-        quake:
+        quake-shareware:
                 command: launcher
                 plugs:  [unity7, pulseaudio, opengl, network]
 
