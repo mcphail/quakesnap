@@ -72,7 +72,7 @@ then
   guiluurve download
   wget https://archive.org/download/Quake_802/zQUAKE_SW-play.zip -t 5 --timeout 10 || guiluurve nodownload
   unzip -LL -d shareware zQUAKE_SW-play.zip || guiluurve nozip
-  cp $SNAP/quakespasm.pak $SNAP_USER_DATA/$GAMEDIR/shareware/id1
+  cp $SNAP/quakespasm.pak $SNAP_USER_DATA/$GAMEDIR/shareware
 fi
 
 cd $SNAP_USER_DATA/$GAMEDIR
