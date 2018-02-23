@@ -1,5 +1,5 @@
 name:   quake-shareware
-version:        "0.2"
+version:        "0.3"
 summary:        Quake shareware installer
 description:    |
         Quake is a classic First Person Shooter, originally released by id games. This will install the shareware version which will be launched in the quakespam engine.
@@ -8,8 +8,8 @@ grade: stable
 
 apps:
         quake-shareware:
-                command: launcher
-                plugs:  [unity7, pulseaudio, opengl, network]
+                command: desktop-launch $SNAP/launcher
+                plugs:  [unity7, pulseaudio, opengl, network, joystick, process-control]
 
 parts:
         sdlgui:
@@ -53,6 +53,7 @@ parts:
                         - libogg0
                         - libvorbis0a
         launch:
+                after: [ desktop-glib-only ]
                 plugin: dump
                 source: launcher
                 stage-packages:
