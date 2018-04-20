@@ -9,7 +9,7 @@ grade: stable
 apps:
         quake-shareware:
                 command: desktop-launch $SNAP/launcher
-                plugs:  [unity7, pulseaudio, opengl, network, joystick, process-control]
+                plugs:  [unity7, pulseaudio, opengl, network, joystick]
 
 parts:
         sdlgui:
