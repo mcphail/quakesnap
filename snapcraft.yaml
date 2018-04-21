@@ -2,7 +2,7 @@ name:   quake-shareware
 version:        "0.3"
 summary:        Quake shareware installer
 description:    |
-        Quake is a classic First Person Shooter, originally released by id games. This will install the shareware version which will be launched in the quakespam engine.
+        Quake is a classic First Person Shooter, originally released by id games. This will install the shareware version which will be launched in the quakespasm engine.
 confinement:    strict
 grade: stable
 
