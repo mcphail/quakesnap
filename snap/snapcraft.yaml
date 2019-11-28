@@ -1,70 +1,60 @@
-name:   quake-shareware
-version:        "qs-0.93.2"
-summary:        Quake shareware installer
-description:    |
-        Quake is a classic First Person Shooter, originally released by id games. This will install the shareware version which will be launched in the quakespasm engine.
-confinement:    strict
+name: quake-shareware
+version: "qs-0.93.2"
+summary: Quake shareware installer
+description: |
+  Quake is a classic First Person Shooter, originally released by id games. This will install the shareware version which will be launched in the quakespasm engine.
+confinement: strict
 grade: stable
+base: core18
 
 apps:
-        quake-shareware:
-                command: desktop-launch $SNAP/launcher
-                plugs:  [unity7, pulseaudio, opengl, network, joystick]
+  quake-shareware:
+    command: launcher
+    plugs: [unity7, pulseaudio, opengl, network, joystick]
+    extensions: [gnome-3-28]
 
 parts:
-        sdlgui:
-                plugin: autotools
-                source-type:    tar
-                source: https://www.libsdl.org/projects/GUIlib/src/GUIlib-1.2.1.tar.gz
-                configflags: [--prefix=/usr]
-                build-packages:
-                        - gcc
-                        - g++
-                        - make
-                        - libsdl1.2-dev
-        gui:
-                after: [sdlgui]
-                plugin: autotools
-                source: guisrc
-                configflags: [--prefix=/usr]
-                build-packages:
-                        - gcc
-                        - make
-                        - libsdl1.2-dev
-        quakespasm:
-                plugin: make
-                source-type: tar
-                source: https://downloads.sourceforge.net/project/quakespasm/Source/quakespasm-0.93.2.tgz
-                source-subdir: Quake
-                make-parameters:
-                        - USE_SDL2=1
-                artifacts:
-                        - quakespasm
-                        - quakespasm.pak
-                build-packages:
-                        - gcc
-                        - make
-                        - libsdl2-dev
-                        - libmad0-dev
-                        - libogg-dev
-                        - libvorbis-dev
-                stage-packages:
-                        - libsdl2-2.0-0
-                        - libmad0
-                        - libogg0
-                        - libvorbis0a
-        launch:
-                after: [ desktop-glib-only ]
-                plugin: dump
-                source: launcher
-                stage-packages:
-                        - wget
-                        - unzip
-                        - libpng12-0
-                        - libsdl1.2debian
-                        - libgl1-mesa-glx
-                prime:
-                        - -share
-                        - -usr/share/doc
-                        - -usr/share/lintian
-                        - -usr/share/man
+  quakespasm:
+    plugin: make
+    source-type: tar
+    source: https://downloads.sourceforge.net/project/quakespasm/Source/quakespasm-0.93.2.tgz
+    source-subdir: Quake
+    make-parameters:
+      - USE_SDL2=1
+    artifacts:
+      - quakespasm
+      - quakespasm.pak
+    build-packages:
+      - gcc
+      - make
+      - libsdl2-dev
+      - libmad0-dev
+      - libogg-dev
+      - libvorbis-dev
+    stage-packages:
+      - libsdl2-2.0-0
+      - libmad0
+      - libogg0
+      - libvorbis0a
+      - libpng16-16
+      - libgl1-mesa-glx
+      - libglu1-mesa
+      - libvorbisfile3
+  launch:
+    plugin: dump
+    source: launcher
+    stage-packages:
+      - wget
+      - unzip
+      - yad
+      - libcairo2
+      - libgdk-pixbuf2.0-0
+      - libglib2.0-0
+      - libgtk-3-0
+      - libpango-1.0-0
+      - libpangocairo-1.0-0
+    prime:
+      - -share
+      - -usr/share/doc
+      - -usr/share/lintian
+      - -usr/share/man
