@@ -1,7 +1,8 @@
 [Desktop Entry]
 Name=Quake
 Exec=quake-shareware
-Comment=Shareware version of Quake
+Comment=Shareware version of Quake using the quakespasm engine
 Type=Application
 Icon=${SNAP}/quake-shareware.png
 StartupNotify=true
+Categories=Game;

@@ -1,5 +1,5 @@
 name:   quake-shareware
-version:        "0.3"
+version:        "qs-0.93.2"
 summary:        Quake shareware installer
 description:    |
         Quake is a classic First Person Shooter, originally released by id games. This will install the shareware version which will be launched in the quakespasm engine.
@@ -33,7 +33,8 @@ parts:
                         - libsdl1.2-dev
         quakespasm:
                 plugin: make
-                source: svn://svn.code.sf.net/p/quakespasm/code/trunk/quakespasm
+                source-type: tar
+                source: https://downloads.sourceforge.net/project/quakespasm/Source/quakespasm-0.93.2.tgz
                 source-subdir: Quake
                 make-parameters:
                         - USE_SDL2=1
